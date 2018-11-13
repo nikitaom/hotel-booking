@@ -4,9 +4,12 @@ import main.dao.repository.OrderRepository;
 import main.dao.services.OrderService;
 import main.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
@@ -33,4 +36,16 @@ public class OrderServiceImpl implements OrderService {
     public void updateOrder(Order order) {
         orderRepository.save(order);
     }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Order findOrdersByBookingId(Long id) {
+        return orderRepository.findOrdersByBookingId(id);
+    }
+
+
 }

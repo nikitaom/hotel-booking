@@ -11,11 +11,11 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int bookingId;
+    private Long id;
     @Column(name = "final_price")
-    private BigDecimal finalPrice;
+    private Double finalPrice;
     @Column(name = "date")
-    private Date date;
+    private String date;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -26,27 +26,27 @@ public class Booking {
     public Booking() {
     }
 
-    public int getBookingId() {
-        return bookingId;
+    public Long getBookingId() {
+        return id;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public void setBookingId(Long id) {
+        this.id = id;
     }
 
-    public BigDecimal getFinalPrice() {
+    public Double getFinalPrice() {
         return finalPrice;
     }
 
-    public void setFinalPrice(BigDecimal finalPrice) {
+    public void setFinalPrice(Double finalPrice) {
         this.finalPrice = finalPrice;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -69,7 +69,7 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-                "bookingId=" + bookingId +
+                "bookingId=" + id +
                 ", finalPrice=" + finalPrice +
                 ", date=" + date +
                 ", user=" + user +

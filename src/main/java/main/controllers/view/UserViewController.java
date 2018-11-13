@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.view;
 
 import main.dao.repository.UserRepository;
 import main.dao.services.UserService;
@@ -12,36 +12,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class UserControllers {
+public class UserViewController {
+
 
     @Autowired
-    UserRepository userRepository;
-    @Autowired
-    UserService userService;
-
+    private UserService userService;
 
     @GetMapping("/")
     public String getMainP(ModelMap model) {
-        model.addAttribute("users",userRepository.findAll());
-               return "index";
+       // model.addAttribute("users",userService.findAll());
+               return "main";
     }
 
     @GetMapping("/new-user")
     public String newUsers(ModelMap modelMap) {
         modelMap.addAttribute("user",new User());
-        return "create";
+        return "create_user";
     }
 
     @PostMapping("/new-user")
     public String newUser(User user){
-        userRepository.save(user);
-        return "index";
+        userService.saveUser(user);
+        return "redirect:/all-users";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable long id) {
-        userRepository.delete(id);
-        return "redirect:/";
+        userService.deleteUserById(id);
+        return "redirect:/all-users";
+    }
+
+    @GetMapping("/all-users")
+    public String showAllUsers(ModelMap model){
+        model.addAttribute("users",userService.findAll());
+        return "index";
     }
 
 }

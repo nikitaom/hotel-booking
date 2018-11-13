@@ -14,9 +14,8 @@ public class User {
     private String name;
     @Column(name = "email")
     private String email;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<Booking> bookingList;
-
 
     public User() {
     }
@@ -43,6 +42,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Booking> getBookingList() {
+        return bookingList;
+    }
+
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
     }
 
     @Override

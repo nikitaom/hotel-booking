@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.NamedNativeQuery;
+import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long> {
-  @Query(value = "select name from users where email=?1", nativeQuery = true)
-  User findUserByEmail(String email);
+   List<User> findAll();
 }

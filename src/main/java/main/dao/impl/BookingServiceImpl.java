@@ -4,9 +4,11 @@ import main.dao.repository.BookingRepository;
 import main.dao.services.BookingService;
 import main.entity.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-
+import java.util.List;
+@Service
 public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingRepository bookingRepository;
@@ -32,5 +34,15 @@ public class BookingServiceImpl implements BookingService {
     @Transactional
     public void updateBooking(Booking booking) {
         bookingRepository.save(booking);
+    }
+
+    @Override
+    public List<Booking> findAll() {
+        return bookingRepository.findAll();
+    }
+
+    @Override
+    public List<Booking> findBookingByUserId(Long id) {
+        return bookingRepository.findBookingByUserId(id);
     }
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "id")
     private Long id;
     @ManyToOne
     @JoinColumn(name = "room_id")
